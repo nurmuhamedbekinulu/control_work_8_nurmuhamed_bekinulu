@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Article{% endblock %}
+{% block menu %}
+    {% if user.is_authenticated %}
+        {% if perms.webapp.change_article %}
+            <a href="{% url 'article_update' article.pk%}" class="btn btn-success">Update Article</a>
+        {% endif %}
+    <a href="{% url 'article_delete' article.pk%}" class="btn btn-danger">Delete Article</a>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Article</h1>
+    <p>Title: {{ article.title }}</p>
+    <p>Text: {{ article.text }}</p>
+    <p>Author: {{ article.author }}</p>
+    <p>Created_at: {{ article.created_at }}</p>
+    <p>Status: {{ article.get_status_display}}</p>
+    {% for  favorite in article.favorite_users.all %}
+        <p>Пользователь <b>{{ favorite.user.username }}</b> - Заметка: {{ favorite.note }}</p>
+    {% endfor %}
+    </div>
+{% endblock %}

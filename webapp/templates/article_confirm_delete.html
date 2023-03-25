@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Article confirm delete{% endblock %}
+{% block menu %}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Вы точно хотите удалить статью?</h1>
+    <p>Title: {{ article.title }}</p>
+    <p>Text: {{ article.author }}</p>
+        <form action="{% url 'confirm_delete' article.pk %}" method="post">
+            {% csrf_token %}
+            <p><input type="submit" value="Удалить"></p>
+            <p><a href="{% url 'index' %}">Отмена</a></p>
+        </form>
+    </div>
+{% endblock %}

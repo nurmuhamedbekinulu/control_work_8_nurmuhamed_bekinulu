@@ -33,7 +33,7 @@ class Product(models.Model):
         null=True,
         blank=True,
         upload_to='product_pic',
-        default='/product_pic/unregistered_user_ava.png',
+        default='product_pic/placeholder.png',
         verbose_name='Картинка'
     )
     is_deleted = models.BooleanField(

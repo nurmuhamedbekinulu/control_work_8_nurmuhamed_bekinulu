@@ -9,6 +9,11 @@ from webapp.forms import ProductForm
 from webapp.models import Product
 
 
+class GroupPermissionMixin(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.groups.filter(name__in=['admin', 'manager']).exists()
+
+
 class ProductCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     template_name = 'product_create.html'
     model = Product
@@ -24,11 +29,6 @@ class ProductDetail(DetailView):
     model = Product
 
 
-class GroupPermissionMixin(UserPassesTestMixin):
-    def test_func(self):
-        return self.request.user.groups.filter(name__in=['admin', 'manager']).exists()
-
-
 class ProductUpdateView(GroupPermissionMixin, LoginRequiredMixin, UpdateView):
     template_name = 'product_update.html'
     form_class = ProductForm
@@ -40,7 +40,7 @@ class ProductUpdateView(GroupPermissionMixin, LoginRequiredMixin, UpdateView):
         return reverse('product_detail', kwargs={'pk': self.object.pk})
 
 
-class ProductDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+class ProductDeleteView(GroupPermissionMixin, SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'product_confirm_delete.html'
     model = Product
     success_url = reverse_lazy('index')

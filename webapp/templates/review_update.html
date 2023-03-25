@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-{% block title %}Product Update{% endblock %}
+{% block title %}Review Update{% endblock %}
 {% block content %}
-    <h1>New Product</h1>
+    <h1>New Review</h1>
 <div class="form">
-    <form action="{% url 'product_update' product.pk %}" method="post">
+    <form action="{% url 'review_update' review.pk %}" method="post">
     {% include 'partial/form_2.html' with button_text='Редактировать' %}
     </form>
 </div>

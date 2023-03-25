@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Review{% endblock %}
+{% block menu %}
+    {% if user.is_authenticated %}
+        {% if perms.webapp.change_product %}
+            <a href="{% url 'review_update' review.pk%}" class="btn btn-success">Update review</a>
+            <a href="{% url 'review_delete' review.pk%}" class="btn btn-danger">Delete review</a>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Review</h1>
+    <p>Автор: {{ review.author }}</p>
+    <p>Отзыв: {{ review.review }}</p>
+    <p>Оценка: {{ review.rating }}</p>
+
+    </div>
+
+{% endblock %}

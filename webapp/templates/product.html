@@ -18,4 +18,22 @@
     <p>Category: {{ product.category}}</p>
 
     </div>
+
+    <h3>Reviews:</h3>
+        <div class="review-list">
+            {% for review in product.reviews.all %}
+            <hr>
+                <div class="review">
+                    <p>Автор: {{ review.author }}</p>
+                    <p>Отзыв: {{ review.review }}</p>
+                    <p>Оценка: {{ review.rating }}</p>
+                    <p>
+                        <a href="{% url 'review_detail' review.pk %}">Подробнее...</a>
+                    </p>
+                </div>
+            <hr>
+            {% empty %}
+                <p>No reviews yet.</p>
+            {% endfor %}
+        </div>
 {% endblock %}

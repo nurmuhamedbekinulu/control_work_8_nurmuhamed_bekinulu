@@ -2,17 +2,17 @@ from django.db.models import Q
 from django.utils.http import urlencode
 from django.views.generic import RedirectView, ListView
 
-from webapp.forms import SearchForm, FavoriteForm
-from webapp.models import Article
-from webapp.models.articles import StatusChoice
+from webapp.forms import SearchForm
+from webapp.models import Product
+from webapp.models.products import CategoryChoice
 
 
 class IndexView(ListView):
     template_name = 'index.html'
-    model = Article
-    context_object_name = 'articles'
+    model = Product
+    context_object_name = 'products'
     ordering = ('created_at',)
-    paginate_by = 2
+    paginate_by = 10
     paginate_orphans = 1
 
     def get(self, request, *args, **kwargs):
@@ -38,7 +38,6 @@ class IndexView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=object_list, **kwargs)
         context['form'] = self.form
-        context['favorite_form'] = FavoriteForm()
         if self.search_value:
             context['query'] = urlencode({'search': self.search_value})
         return context

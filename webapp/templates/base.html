@@ -19,9 +19,7 @@
             </li>
             {% block menu %}{% endblock %}
             {% if user.is_authenticated %}
-                <li>
-                    <a href="{% url 'article_add' %}" class="btn btn-primary">Add Article</a>
-                </li>
+
                 <li>
                     <a href="{% url 'profile' user.pk %}" class="btn btn-primary">Profile</a>
                 </li>

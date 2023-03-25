@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 from django.views.generic import DeleteView, UpdateView
 from django.core.paginator import Paginator
-
+from webapp.models import Product
 from accounts.forms import LoginForm, UserChangeForm, ProfileChangeForm
 
 
@@ -67,16 +67,16 @@ class ProfileView(LoginRequiredMixin, DeleteView):
     paginate_related_by = 3
     paginate_related_orphans = 0
 
-    def get_context_data(self, **kwargs):
-        articles = self.object.articles.order_by('-created_at')
-        paginator = Paginator(articles, self.paginate_related_by,
-                              orphans=self.paginate_related_orphans)
-        page_number = self.request.GET.get('page', 1)
-        page = paginator.get_page(page_number)
-        kwargs['page_obj'] = page
-        kwargs['articles'] = page.object_list
-        kwargs['is_paginated'] = page.has_other_pages()
-        return super().get_context_data(**kwargs)
+    # def get_context_data(self, **kwargs):
+    #     products = self.object.Product.order_by('-created_at')
+    #     paginator = Paginator(products, self.paginate_related_by,
+    #                           orphans=self.paginate_related_orphans)
+    #     page_number = self.request.GET.get('page', 1)
+    #     page = paginator.get_page(page_number)
+    #     kwargs['page_obj'] = page
+    #     kwargs['products'] = page.object_list
+    #     kwargs['is_paginated'] = page.has_other_pages()
+    #     return super().get_context_data(**kwargs)
 
 
 class UserChangeView(UpdateView):

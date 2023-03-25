@@ -17,7 +17,7 @@ class ReviewChoice(TextChoices):
 class Review(models.Model):
     author = models.OneToOneField(
         get_user_model(),
-        related_name='profile',
+        related_name='review',
         on_delete=models.CASCADE,
         verbose_name='Автор'
     )
@@ -37,6 +37,8 @@ class Review(models.Model):
         verbose_name='Оценка',
         choices=ReviewChoice.choices,
         max_length=20,
+        null=False,
+        blank=False,
         default=ReviewChoice.NOT_RATED
     )
     is_deleted = models.BooleanField(

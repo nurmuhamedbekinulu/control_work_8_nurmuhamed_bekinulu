@@ -1,0 +1,11 @@
+[
+{
+    "model": "accounts.profile",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "avatar": "user_pic/superadmin_ava.jpg",
+        "birth_date": "2000-03-25"
+    }
+}
+]

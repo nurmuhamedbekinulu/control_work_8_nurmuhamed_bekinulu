@@ -1,0 +1,30 @@
+[
+{
+    "model": "webapp.product",
+    "pk": 1,
+    "fields": {
+        "name": "Вода Samal",
+        "category": "Beverages",
+        "description": "Вода Samal, 0.5л., без газа",
+        "pic": "product_pic/Samal-negaz-500ml-1.webp",
+        "is_deleted": false,
+        "created_at": "2023-03-25T08:03:41.116Z",
+        "updated_at": "2023-03-25T08:03:41.116Z",
+        "deleted_at": null
+    }
+},
+{
+    "model": "webapp.review",
+    "pk": 1,
+    "fields": {
+        "author": 1,
+        "product": 1,
+        "review": "Удобная упаковка",
+        "rating": "5",
+        "is_deleted": false,
+        "created_at": "2023-03-25T08:07:22.024Z",
+        "updated_at": "2023-03-25T08:07:22.024Z",
+        "deleted_at": null
+    }
+}
+]

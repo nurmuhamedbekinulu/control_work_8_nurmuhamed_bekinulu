@@ -19,7 +19,9 @@
             </li>
             {% block menu %}{% endblock %}
             {% if user.is_authenticated %}
-
+                <li>
+                    <a href="{% url 'product_add' %}" class="btn btn-primary">Add Product</a>
+                </li>
                 <li>
                     <a href="{% url 'profile' user.pk %}" class="btn btn-primary">Profile</a>
                 </li>

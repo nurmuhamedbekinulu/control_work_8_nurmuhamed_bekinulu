@@ -6,6 +6,12 @@
     <h1>Products</h1>
 
     {% for product in products %}
+        {% if product.pic %}
+            <img src="/uploads/{{ product.pic }}" alt="{{ product.name }}">
+        {% else %}
+            <img src="/uploads/product_pic/placeholder.png" alt="{{ product.name }}">
+        {% endif %}
+
         <h2>{{ product.name }}</h2>
         <h2>{{ product.description }}</h2>
         <p>

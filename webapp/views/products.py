@@ -45,18 +45,3 @@ class ProductDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     model = Product
     success_url = reverse_lazy('index')
     success_message = 'Продукт удален'
-
-
-# class FavoriteView(LoginRequiredMixin, FormView):
-#     form_class = FavoriteForm
-
-#     def post(self, request, *args, **kwargs):
-#         article = get_object_or_404(Article, pk=kwargs.get('pk'))
-#         form = self.get_form_class()(request.POST)
-#         if form.is_valid():
-#             note = form.cleaned_data.get('note')
-#             user = request.user
-#             if not Favorite.objects.filter(user=user, article=article).exists():
-#                 Favorite.objects.create(user=user, article=article, note=note)
-#                 messages.success(request, 'Статья была добавлена в избранное')
-#         return redirect('index')

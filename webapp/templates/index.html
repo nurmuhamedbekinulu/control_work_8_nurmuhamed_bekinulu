@@ -6,20 +6,24 @@
     <h1>Products</h1>
 
     {% for product in products %}
-        {% if product.pic %}
-            <img src="/uploads/{{ product.pic }}" alt="{{ product.name }}">
-        {% else %}
-            <img src="/uploads/product_pic/placeholder.png" alt="{{ product.name }}">
-        {% endif %}
+    <div class="card col-8 mx-auto my-3">
+            {% if product.pic %}
+                <img src="/uploads/{{ product.pic }}" class="card-img-top"  alt="{{ product.name }}">
+            {% else %}
+                <img src="/uploads/product_pic/placeholder.png" class="card-img-top"  alt="{{ product.name }}">
+            {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <p>
+                <a href="{% url 'product_detail' product.pk %}" class="card-link">Подробнее...</a>
+            </p>
+            {% if user.is_authenticated %}
 
-        <h2>{{ product.name }}</h2>
-        <h2>{{ product.description }}</h2>
-        <p>
-            <a href="{% url 'product_detail' product.pk %}">Подробнее...</a>
-        </p>
-        {% if user.is_authenticated %}
-
-        {% endif %}
+            {% endif %}
+        </div>
+    </div>
+  
     {% endfor %}
     {% if is_paginated %}
         {% include 'partial/pagination.html' %}

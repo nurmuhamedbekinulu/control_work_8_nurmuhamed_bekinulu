@@ -31,7 +31,7 @@ class IndexView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset().exclude(is_deleted=True)
         if self.search_value:
-            query = Q(title__icontains=self.search_value) | Q(author__icontains=self.search_value)
+            query = Q(name__icontains=self.search_value) | Q(description__icontains=self.search_value)
             queryset = queryset.filter(query)
         return queryset
 

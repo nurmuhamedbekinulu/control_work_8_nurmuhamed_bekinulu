@@ -5,6 +5,7 @@
         {% if perms.webapp.change_product %}
             <a href="{% url 'product_update' product.pk%}" class="btn btn-success">Update product</a>
             <a href="{% url 'product_delete' product.pk%}" class="btn btn-danger">Delete product</a>
+            <a href="{% url 'add_review' pk=product.pk%}" class="btn btn-primary">Add review</a>
         {% endif %}
     {% endif %}
 {% endblock %}

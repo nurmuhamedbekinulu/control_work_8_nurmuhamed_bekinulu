@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator, BaseValidator
-from webapp.models import Product
+from webapp.models import Product, Review
 
 
 
@@ -49,3 +49,15 @@ class ProductForm(forms.ModelForm):
 
 class SearchForm(forms.Form):
     search = forms.CharField(max_length=20, required=False, label='Найти')
+
+
+class ReviewForm(forms.ModelForm):
+
+    class Meta:
+        model = Review
+        fields = ('author', 'review', 'rating')
+        labels = {
+            'author': 'Автор',
+            'review': 'Отзыв',
+            'rating': 'Оценка'
+        }

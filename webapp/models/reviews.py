@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.db.models import TextChoices
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 
 
 
@@ -15,11 +16,11 @@ class ReviewChoice(TextChoices):
 
 
 class Review(models.Model):
-    author = models.OneToOneField(
-        get_user_model(),
-        related_name='review',
+    author = models.ForeignKey(
+        to=User,
+        related_name='reviews',
         on_delete=models.CASCADE,
-        verbose_name='Автор'
+        verbose_name='Продукт'
     )
     product = models.ForeignKey(
         'webapp.Product',

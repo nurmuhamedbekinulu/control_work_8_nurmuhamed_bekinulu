@@ -3,7 +3,7 @@ from django.db.models import Manager
 from webapp.querysets import CustomBaseQuerySet
 
 
-class ArticleManager(Manager):
+class ProductManager(Manager):
 
     def get_or_none(self, pk=None):
         try:

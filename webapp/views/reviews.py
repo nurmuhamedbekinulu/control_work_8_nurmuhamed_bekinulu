@@ -16,6 +16,7 @@ class ReviewCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         product = get_object_or_404(Product, pk=self.kwargs.get('pk'))
+        form.instance.author = self.request.user
         review = form.save(commit=False)
         review.product = product
         review.save()

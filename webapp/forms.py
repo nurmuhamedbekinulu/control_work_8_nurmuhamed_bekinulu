@@ -55,9 +55,8 @@ class ReviewForm(forms.ModelForm):
 
     class Meta:
         model = Review
-        fields = ('author', 'review', 'rating')
+        fields = ('review', 'rating')
         labels = {
-            'author': 'Автор',
             'review': 'Отзыв',
             'rating': 'Оценка'
         }
